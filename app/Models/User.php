@@ -17,7 +17,12 @@ class User extends Authenticatable
      *
      * @var list<string>
      */
-    protected $Gguarded =[];
+    protected $guarded =[];
+
+    public function clas()
+    {
+        return $tgis->belongsTo(clas::class,'clas_id');
+    }
 
     /**
      * The attributes that should be hidden for serialization.
@@ -29,9 +34,6 @@ class User extends Authenticatable
         'remember_token',
     ];
 
-
-
-    // kembalkan relasi ke tabel clas
     /**
      * Get the attributes that should be cast.
      *
@@ -43,5 +45,6 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+
     }
 }
