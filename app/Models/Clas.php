@@ -12,6 +12,6 @@ class Clas extends Model
 
 
     public function user(){
-        return $this->hasMany(User);
+        return $this->hasMany(User::class, 'clas_id');
     }
 }
