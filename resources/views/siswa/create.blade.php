@@ -8,15 +8,15 @@
 <body>
     <h1>Halaman Tambah</h1><br>
     
-<form action="" method="get">
-
+<form action="/siswa/store" method="post">
+         @csrf
     <div>
         <label for="kelas">Kelas PPLG </label>
         <br>
-        <select name="kelas">
-            <option value="">XII PPLG 1</option>
-            <option value="">XII PPLG 2</option>
-            <option value="">XII PPLG 3</option>
+        <select name="kelas_id">
+            <option value="1">XII PPLG 1</option>
+            <option value="2">XII PPLG 2</option>
+            <option value="3">XII PPLG 3</option>
         </select>
     </div><br>
     <div>
@@ -44,7 +44,7 @@
         <input type="password" name="password">
     </div><br>
     <div>
-        <label for="photo">Photo:</label><br>
+        <label for="photo">Photo</label><br>
         <input type="file" name="photo">
     </div><br>
 
