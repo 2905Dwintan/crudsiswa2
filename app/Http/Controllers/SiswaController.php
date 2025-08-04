@@ -7,12 +7,25 @@ use App\Models\User;
 
 class SiswaController extends Controller
 {
+    // mengarahkan  ke halaman index 
+    public function index () {
+         return view('siswa.index');
+    }
+
+    // mengarahkan ke halaman  create 
+    public function create () {
+          return view('siswa.create');
+    }
+
+    // fungsi  store data siswa
     public function store(Request $request) {
+
+        // lakukan validasi data 
         $request->validate([
             'name'         => 'required',
-            'nisn'         => 'required',
+            'nisn'         => 'required | unique:users,nisn' ,
             'alamat'       => 'required',
-            'email'        => 'required',
+            'email'        => 'required | unique:users,email',
             'password'     => 'required',
             'no_handphone' => 'required'
         ]);
