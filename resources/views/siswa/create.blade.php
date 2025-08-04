@@ -9,6 +9,7 @@
     <h1>Halaman Siswa PPLG </h1><br>
     
 <form action="/siswa/store" method="post">
+    
          @csrf
     <div>
         <label for="kelas">Kelas PPLG </label>
