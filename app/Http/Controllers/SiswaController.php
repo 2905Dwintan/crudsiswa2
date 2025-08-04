@@ -23,7 +23,7 @@ class SiswaController extends Controller
         // lakukan validasi data 
         $request->validate([
             'name'         => 'required',
-            'nisn'         => 'required',
+            'nisn'         => 'required | unique:users,nisn' ,
             'alamat'       => 'required',
             'email'        => 'required | unique:users,email',
             'password'     => 'required',
