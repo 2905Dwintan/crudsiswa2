@@ -8,16 +8,15 @@
 <body>
     <h1>Halaman Siswa PPLG </h1><br>
     
-<form action="/siswa/store" method="post">
-    
-         @csrf
+<form action="/siswa/store" method="post" enctype="multipart/form-data">
+    @csrf
     <div>
         <label for="kelas">Kelas PPLG </label>
         <br>
         <select name="kelas_id">
-            <option value="1">XII PPLG 1</option>
-            <option value="2">XII PPLG 2</option>
-            <option value="3">XII PPLG 3</option>
+            @foreach($clases as $clas)
+                <option value="{{ $clas->id}}">{{ $clas->name }}</option>
+            @endforeach
         </select>
     </div><br>
 
