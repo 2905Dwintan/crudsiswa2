@@ -10,6 +10,7 @@
     <table border="1" cellpadding="10" cellspacing="0">
         <thead>
             <tr>
+                <td>Foto</th>
                 <th>Nama</th>
                 <th>Email</th>
                 <th>Password</th>
