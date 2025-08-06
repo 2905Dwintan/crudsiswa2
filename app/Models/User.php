@@ -21,7 +21,7 @@ class User extends Authenticatable
 
     public function clas()
     {
-        return $tgis->belongsTo(Clas::class,'clas_id');
+        return $this->belongsTo(Clas::class,'clas_id');
     }
 
     /**

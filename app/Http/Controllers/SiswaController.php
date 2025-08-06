@@ -9,7 +9,9 @@ use App\Models\Clas;
 class SiswaController extends Controller
 {
     public function index() {
-        return view('siswa.index');
+        // siapkan data siseas
+        $siswas = User::all();
+        return view('siswa.index', compact('siswas'));
     }
 
     public function create() {
