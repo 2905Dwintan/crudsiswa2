@@ -12,24 +12,27 @@
             <tr>
                 <td>Foto</th>
                 <th>Nama</th>
+                <td>kelas</th>
                 <th>Email</th>
-                <th>Password</th>
-                <th>No Handphone</th>
+                <th>no_handphone</th>
                 <th>Aksi</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody>@Foreach ($siswas as $siswa)
             <tr>
-                <td>Dwi Intan</td>
-                <td>dwiintan@gmail.com</td>
-                <td>12122</td>
-                <td>0896650786499</td>
+                <td><img src="{{ asset('storage/'.$siswa->photo)}}" alt ="" width ="50"</td>
+                <td>{{ $siswa->name      }}</td>
+                  <td>{{ $siswa->clas->name }}</td>
+                 <td>{{ $siswa->email  }}</td>
+                <td>{{$siswa->no_handphone }}</td>
                 <td>
-                    <a href="edit.html"><button>Edit</button></a>
-                    <a href="hapus.html"><button>Hapus</button></a>
+                 <a href="/siswa/create"><button>Detail</button></a>
+                <a href="edit.html"><button>Edit</button></a>
+                <a href="hapus.html"><button>Hapus</button></a>
+                <a href="/siswa/create"><button>Tambah</button></a>
                 </td>
             </tr>
-            <a href="/siswa/create"><button>Tambah</button></a>
+            @endforeach
             <br>
             <br>
         </tbody>
