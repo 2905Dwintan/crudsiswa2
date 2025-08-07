@@ -6,7 +6,8 @@
     <title>Document</title>
 </head>
 <body>
-    <h1>Halaman Siswa PPLG </h1><br>
+<h1 style="color: #e91e63;">Halaman Siswa PPLG</h1><br>
+
     
 <form action="/siswa/store" method="post" enctype="multipart/form-data">
     @csrf
@@ -79,14 +80,26 @@
     @enderror
     </div><br>
 
-    <div>
-        <label for="photo">Photo</label><br>
-        <input type="file" name="photo">
-    </div><br>
+<div style="margin-bottom: 15px;">
+    <label for="photo" 
+           style="display: block; margin-bottom: 5px; font-weight: bold; color: #e91e63;">
+        📷 Upload Photo
+    </label>
+    
+    <input type="file" name="photo" 
+           style="padding: 6px; border: 1px solid #e91e63; border-radius: 6px; background-color: #fce4ec;">
+</div>
 
-    <button type="submit">simpan</button><br>
-    <br>
-</form>
-<a href="/"><button>kembali</button></a>
+<button type="submit" 
+        style="padding: 8px 15px; background-color: #e91e63; color: white; border: none; border-radius: 6px; font-size: 14px;">
+    Simpan
+</button>
+<br><br>
+
+<a href="/" 
+   style="display: inline-block; padding: 8px 15px; background-color: #e91e63; color: white; text-decoration: none; border-radius: 6px; font-size: 14px;">
+   Kembali
+</a>
+
 </body>
 </html>

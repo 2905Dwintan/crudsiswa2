@@ -7,6 +7,7 @@
 </head>
 <body>
     <h1>Data Siswa</h1>
+    <a href="/siswa/create">Tambah </a>
     <table border="1" cellpadding="10" cellspacing="0">
         <thead>
             <tr>
@@ -26,10 +27,10 @@
                  <td>{{ $siswa->email  }}</td>
                 <td>{{$siswa->no_handphone }}</td>
                 <td>
-                 <a href="/siswa/create"><button>Detail</button></a>
-                <a href="edit.html"><button>Edit</button></a>
-                <a href="hapus.html"><button>Hapus</button></a>
-                <a href="/siswa/create"><button>Tambah</button></a>
+                <a href="/siswa/edit{{ $siswa->id }}" style="padding: 5px 10px; text-decoration: none; border: 1px solid #aaa; border-radius: 4px; margin-right: 5px;">Edit</a>
+                <a href="/siswa/detail{{ $siswa->id }}" style="padding: 5px 10px; text-decoration: none; border: 1px solid #aaa; border-radius: 4px; margin-right: 5px;">Detail</a>
+                <a href="/siswa/delete/{{ $siswa->id }}" onclick="return confirm('Yakin ingin menghapus data ini?')" style="padding: 5px 10px; text-decoration: none; border: 1px solid #aaa; border-radius: 4px;">Delete</a>
+        </td>
                 </td>
             </tr>
             @endforeach
