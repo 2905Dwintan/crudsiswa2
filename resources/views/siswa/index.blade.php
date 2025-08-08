@@ -14,8 +14,8 @@
                 <td>Foto</th>
                 <th>Nama</th>
                 <td>kelas</th>
+                <td>Nisn</th>
                 <th>Email</th>
-                <th>no_handphone</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -24,13 +24,13 @@
                 <td><img src="{{ asset('storage/'.$siswa->photo)}}" alt ="" width ="50"</td>
                 <td>{{ $siswa->name      }}</td>
                   <td>{{ $siswa->clas->name }}</td>
+                  <td>{{ $siswa->nisn }}</td>
                  <td>{{ $siswa->email  }}</td>
-                <td>{{$siswa->no_handphone }}</td>
-                <td>
+              <td>
                 <a href="/siswa/edit{{ $siswa->id }}" style="padding: 5px 10px; text-decoration: none; border: 1px solid #aaa; border-radius: 4px; margin-right: 5px;">Edit</a>
-                <a href="/siswa/detail{{ $siswa->id }}" style="padding: 5px 10px; text-decoration: none; border: 1px solid #aaa; border-radius: 4px; margin-right: 5px;">Detail</a>
+                <a href="/siswa/show/{{ $siswa->id }}" style="padding: 5px 10px; text-decoration: none; border: 1px solid #aaa; border-radius: 4px; margin-right: 5px;">Detail</a>
                 <a href="/siswa/delete/{{ $siswa->id }}" onclick="return confirm('Yakin ingin menghapus data ini?')" style="padding: 5px 10px; text-decoration: none; border: 1px solid #aaa; border-radius: 4px;">Delete</a>
-        </td>
+            </td>
                 </td>
             </tr>
             @endforeach
