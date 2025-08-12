@@ -3,20 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>edit data siswa</title>
 </head>
 <body>
-<h1 style="color: #e91e63;">Halaman Siswa PPLG</h1><br>
+<h1 style="color: #e91e63;">edit data siswa</h1><br>
+<p>halaman untuk mengedit data siswa</p>
+<img width="70" src="{{asset('storage/'.$datauser->photo)}}" alt="">
 
     
-<form action="/siswa/store" method="post" enctype="multipart/form-data">
+<form action="/siswa/update/{{$datauser->id}}" method="post" enctype="multipart/form-data">
     @csrf
     <div>
         <label for="kelas">Kelas PPLG </label>
         <br>
         <select name="kelas_id">
             @foreach($clases as $clas)
-                <option value="{{ $clas->id}}">{{ $clas->name }}</option>
+                <option {{$clas->id==$datauser->clas_id ? 'selected' : ''}} value="{{ $clas->id}}">{{ $clas->name }}</option>
             @endforeach
         </select>
     </div><br>
@@ -28,7 +30,7 @@
     <div>
      
         <label for="name">Nama:</label><br>
-        <input type="text" name="name">
+        <input type="text" name="name" value="{{$datauser->name}}">
         <br>
         @error('name')
     <small style="color: #FF0000">{{ $message }}</small>
@@ -37,7 +39,7 @@
 
     <div>
         <label for="nisn">NISN:</label><br>
-        <input type="text" name="nisn">
+        <input type="text" name="nisn" value="{{$datauser->nisn}}">
         <br>
         @error('nisn')
     <small style="color: #FF0000">{{ $message }}</small>
@@ -46,7 +48,7 @@
 
     <div>
         <label for="alamat">Alamat:</label><br>
-        <input type="text" name="alamat">
+        <input type="text" name="alamat" value="{{$datauser->alamat}}">
         <br>
         @error('alamat')
     <small style="color: #FF0000">{{ $message }}</small>
@@ -55,7 +57,7 @@
 
     <div>
         <label for="no_handphone">No Handphone:</label><br>
-        <input type="text" name="no_handphone">
+        <input type="text" name="no_handphone" value="{{$datauser->no_handphone}}">
         <br>
         @error('no_handphone')
     <small style="color: #FF0000">{{ $message }}</small>
@@ -64,7 +66,7 @@
 
     <div>
         <label for="email">Email:</label><br>
-        <input type="text" name="email">
+        <input type="text" name="email" value="{{$datauser->email}}">
         <br>
         @error('email')
     <small style="color: #FF0000">{{ $message }}</small>

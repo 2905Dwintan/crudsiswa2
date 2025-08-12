@@ -7,28 +7,31 @@
 </head>
 <body>
     <h1>Data Siswa</h1>
+    <a href="/siswa/create">Tambah </a>
     <table border="1" cellpadding="10" cellspacing="0">
         <thead>
             <tr>
+                <td>Foto</th>
                 <th>Nama</th>
-                <th>Email</th>
-                <th>Password</th>
-                <th>No Handphone</th>
+                <td>kelas</th>
+                <th>Alamat</th>
                 <th>Aksi</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody>@Foreach ($siswas as $siswa)
             <tr>
-                <td>Dwi Intan</td>
-                <td>dwiintan@gmail.com</td>
-                <td>12122</td>
-                <td>0896650786499</td>
-                <td>
-                    <a href="edit.html"><button>Edit</button></a>
-                    <a href="hapus.html"><button>Hapus</button></a>
+                <td><img src="{{asset('storage/'.$siswa->photo)}}" alt ="" width ="50"</td>
+                <td>{{ $siswa->name}}</td>
+                  <td>{{ $siswa->clas->name }}</td>
+                  <td>{{ $siswa->alamat}}</td>
+              <td>
+                <a href="/siswa/edit/{{ $siswa->id }}" style="padding: 5px 10px; text-decoration: none; border: 1px solid #aaa; border-radius: 4px; margin-right: 5px;">Edit</a>
+                <a href="/siswa/show/{{ $siswa->id }}" style="padding: 5px 10px; text-decoration: none; border: 1px solid #aaa; border-radius: 4px; margin-right: 5px;">Detail</a>
+                <a href="/siswa/delete/{{ $siswa->id }}" onclick="return confirm('Yakin ingin menghapus data ini?')" style="padding: 5px 10px; text-decoration: none; border: 1px solid #aaa; border-radius: 4px;">Delete</a>
+            </td>
                 </td>
             </tr>
-            <a href="/siswa/create"><button>Tambah</button></a>
+            @endforeach
             <br>
             <br>
         </tbody>
