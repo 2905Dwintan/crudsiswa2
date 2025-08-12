@@ -7,24 +7,28 @@
     <style>
         body {
             background-color: #fff0f5;
-            font-family: Arial, sans-serif;
+            font-family: 'Poppins', sans-serif;
             color: #e91e63;
+            margin: 0;
+            padding: 0;
         }
         h1 {
             text-align: center;
             color: #e91e63;
+            margin-top: 30px;
         }
-        form {
-            max-width: 500px;
-            margin: auto;
+        .form-container {
+            max-width: 380px;
+            margin: 20px auto;
             background: #ffe4ec;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 15px;
             box-shadow: 0px 4px 8px rgba(233, 30, 99, 0.2);
         }
         label {
             font-weight: bold;
             color: #ad1457;
+            font-size: 14px;
         }
         input[type="text"],
         input[type="password"],
@@ -33,128 +37,121 @@
             padding: 8px;
             margin-top: 5px;
             border: 1px solid #e91e63;
-            border-radius: 5px;
+            border-radius: 8px;
             background-color: #fff;
+            font-size: 14px;
         }
         input[type="file"] {
             border: none;
+            font-size: 14px;
         }
         button {
-            padding: 10px 20px;
+            padding: 10px;
+            width: 100%;
             background-color: #e91e63;
             color: white;
             border: none;
-            border-radius: 5px;
+            border-radius: 8px;
             cursor: pointer;
+            font-size: 14px;
         }
         button:hover {
             background-color: #d81b60;
         }
         a {
+            display: block;
+            text-align: center;
             background-color: #f06292;
             color: white;
-            padding: 8px 15px;
-            border-radius: 5px;
+            padding: 8px;
+            border-radius: 8px;
             text-decoration: none;
+            font-size: 14px;
+            margin-top: 10px;
         }
         a:hover {
             background-color: #ec407a;
         }
         small {
             color: #f50057;
+            font-size: 12px;
         }
         .photo-container {
             display: flex;
             justify-content: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .photo-container img {
             border-radius: 50%;
             object-fit: cover;
+            width: 80px;
+            height: 80px;
+            border: 2px solid #e91e63;
         }
     </style>
 </head>
 
 <body>
-    <h1>Halaman Edit Siswa PPLG</h1><br>
+    <h1>✏️ Edit Siswa PPLG</h1>
 
-    <div class="photo-container">
-        <img width="70" src="{{ asset('storage/'.$datauser->photo) }}">
-    </div>
-
-    <form action="/siswa/store" method="post" enctype="multipart/form-data">
-        @csrf
-        <div>
-            <label for="kelas">Kelas PPLG</label><br>
-            <select name="kelas_id">
-                @foreach($clases as $clas)
-                    <option {{ $clas->id == $datauser->clas_id ? 'selected' : '' }} value="{{ $clas->id }}">{{ $clas->name }}</option>
-                @endforeach
-            </select>
-        </div><br>
-        @error('kelas_id')
-            <small>{{ $message }}</small>
-        @enderror
-
-        <div>
-            <label for="name">Nama:</label><br>
-            <input type="text" name="name" value="{{ $datauser->name }}">
-            <br>
-            @error('name')
-                <small>{{ $message }}</small>
-            @enderror
-        </div><br>
-
-        <div>
-            <label for="nisn">NISN:</label><br>
-            <input type="text" name="nisn" value="{{ $datauser->nisn }}">
-            <br>
-            @error('nisn')
-                <small>{{ $message }}</small>
-            @enderror
-        </div><br>
-
-        <div>
-            <label for="no_handphone">No Handphone:</label><br>
-            <input type="text" name="no_handphone" value="{{ $datauser->no_handphone }}">
-            <br>
-            @error('no_handphone')
-                <small>{{ $message }}</small>
-            @enderror
-        </div><br>
-
-        <div>
-            <label for="email">Email:</label><br>
-            <input type="text" name="email" value="{{ $datauser->email }}">
-            <br>
-            @error('email')
-                <small>{{ $message }}</small>
-            @enderror
-        </div><br>
-
-        <div>
-            <label for="password">Password:</label><br>
-            <input type="password" name="password">
-            <small style="color: #0040ff">Abaikan jika tidak ingin diubah</small>
-            <br>
-            @error('password')
-                <small>{{ $message }}</small>
-            @enderror
-        </div><br>
-
-        <div style="margin-bottom: 15px;">
-            <label for="photo" style="display: block; margin-bottom: 5px; font-weight: bold; color: #e91e63;">
-                📷 Upload Photo
-            </label>
-            <input type="file" name="photo" style="padding: 6px; border: 1px solid #e91e63; border-radius: 6px; background-color: #fce4ec;">
+    <div class="form-container">
+        <div class="photo-container">
+            <img src="{{ asset('storage/'.$datauser->photo) }}" alt="Foto Siswa">
         </div>
 
-        <button type="submit">
-            Simpan
-        </button>
-        <br><br>
+        <form action="/siswa/update/{{ $datauser->id }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div>
+                <label for="kelas">Kelas</label>
+                <select name="kelas_id">
+                    @foreach($clases as $clas)
+                        <option {{ $clas->id == $datauser->clas_id ? 'selected' : '' }} value="{{ $clas->id }}">
+                            {{ $clas->name }}
+                        </option>
+                    @endforeach
+                </select>
+                @error('kelas_id') <small>{{ $message }}</small> @enderror
+            </div><br>
 
-        <a href="/">Kembali</a>
-    </form>
+            <div>
+                <label>Nama</label>
+                <input type="text" name="name" value="{{ $datauser->name }}">
+                @error('name') <small>{{ $message }}</small> @enderror
+            </div><br>
+
+            <div>
+                <label>NISN</label>
+                <input type="text" name="nisn" value="{{ $datauser->nisn }}">
+                @error('nisn') <small>{{ $message }}</small> @enderror
+            </div><br>
+
+            <div>
+                <label>No Handphone</label>
+                <input type="text" name="no_handphone" value="{{ $datauser->no_handphone }}">
+                @error('no_handphone') <small>{{ $message }}</small> @enderror
+            </div><br>
+
+            <div>
+                <label>Email</label>
+                <input type="text" name="email" value="{{ $datauser->email }}">
+                @error('email') <small>{{ $message }}</small> @enderror
+            </div><br>
+
+            <div>
+                <label>Password</label>
+                <input type="password" name="password">
+                <small style="color: #0040ff">Kosongkan jika tidak ingin diubah</small>
+                @error('password') <small>{{ $message }}</small> @enderror
+            </div><br>
+
+            <div>
+                <label>📷 Upload Photo</label>
+                <input type="file" name="photo">
+            </div><br>
+
+            <button type="submit">💾 Simpan</button>
+            <a href="/">⬅ Kembali</a>
+        </form>
+    </div>
 </body>
 </html>

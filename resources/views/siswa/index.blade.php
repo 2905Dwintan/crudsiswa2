@@ -3,113 +3,156 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Halaman Home</title>
+    <title>Data Siswa</title>
     <style>
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #ffe4ec;
+            font-family: 'Poppins', sans-serif;
+            background-color: #fff5f8;
             margin: 0;
             padding: 0;
         }
-        h1 {
-            text-align: center;
-            font-size: 40px;
-            color: #d81b60;
-            font-weight: bold;
-            letter-spacing: 2px;
-            margin-top: 30px;
-        }
         .container {
             width: 90%;
-            max-width: 1200px;
-            margin: 20px auto;
-            text-align: center;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* ===== Header ===== */
+        .header-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin: 25px 0;
+        }
+        h2 {
+            font-size: 28px;
+            color: #d81b60;
+            font-weight: 700;
         }
         .btn-tambah {
-            display: inline-block;
-            background-color: #d81b60;
+            position: absolute;
+            left: 0;
+            background: linear-gradient(135deg, #f48fb1, #f06292);
             color: white;
-            padding: 10px 20px;
+            padding: 10px 18px;
+            border-radius: 30px;
             text-decoration: none;
-            border-radius: 8px;
-            font-size: 16px;
-            margin-bottom: 20px;
+            font-size: 15px;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 4px 12px rgba(240, 98, 146, 0.3);
+            transition: all 0.3s ease;
         }
+        .btn-tambah:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(240, 98, 146, 0.5);
+        }
+
+        /* ===== Table ===== */
         table {
             border-collapse: collapse;
             width: 100%;
             background-color: white;
-            font-size: 18px;
+            font-size: 16px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            animation: fadeIn 0.5s ease-in-out;
         }
         th, td {
-            padding: 15px;
-            border: 1px solid #ddd;
+            padding: 14px;
+            border-bottom: 1px solid #f8bbd0;
+            text-align: center;
         }
         th {
             background-color: #f8bbd0;
             color: #880e4f;
         }
         tr:hover {
-            background-color: #fce4ec;
+            background-color: #fff0f5;
+            transition: 0.3s;
         }
+
+        /* Foto bulat */
         img {
-            width: 80px;
-            height: 80px;
-            object-fit: cover; /* tetap kotak */
+            width: 70px;
+            height: 70px;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid #f8bbd0;
         }
+
+        /* Tombol Aksi */
         .aksi-btn a {
-            padding: 8px 12px;
+            padding: 6px 12px;
             margin: 0 3px;
-            border-radius: 5px;
+            border-radius: 20px;
             text-decoration: none;
             color: white;
             font-size: 14px;
+            transition: all 0.3s ease;
         }
-        .edit-btn {
-            background-color: #ff4081;
-        }
-        .detail-btn {
-            background-color: #f48fb1;
-        }
-        .delete-btn {
-            background-color: #c2185b;
+        .edit-btn { background-color: #ff80ab; }
+        .edit-btn:hover { background-color: #ec407a; }
+        .detail-btn { background-color: #f48fb1; }
+        .detail-btn:hover { background-color: #d81b60; }
+        .delete-btn { background-color: #c2185b; }
+        .delete-btn:hover { background-color: #880e4f; }
+
+        /* Animasi */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
 <body>
 
-    <h1>✨ Data Siswa ✨</h1>
-    <div class="container">
-        <a href="/siswa/create" class="btn-tambah">Tambah</a>
-        <table>
-            <thead>
-                <tr>
-                    <th>Foto</th>
-                    <th>Nama</th>
-                    <th>Kelas</th>
-                    <th>NISN</th>
-                    <th>Email</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($siswas as $siswa)
-                <tr>
-                    <td><img src="{{ asset('storage/'.$siswa->photo) }}" alt=""></td>
-                    <td>{{ $siswa->name }}</td>
-                    <td>{{ $siswa->clas->name }}</td>
-                    <td>{{ $siswa->nisn }}</td>
-                    <td>{{ $siswa->email }}</td>
-                    <td class="aksi-btn">
-                        <a href="/siswa/edit/{{ $siswa->id }}" class="edit-btn">Edit</a>
-                        <a href="/siswa/show/{{ $siswa->id }}" class="detail-btn">Detail</a>
-                        <a href="/siswa/delete/{{ $siswa->id }}" onclick="return confirm('Yakin ingin menghapus data ini?')" class="delete-btn">Delete</a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+<div class="container">
+    <!-- Header -->
+    <div class="header-wrapper">
+        <a href="/siswa/create" class="btn-tambah">➕ Tambah Siswa</a>
+        <h2>📋 Daftar Siswa</h2>
     </div>
+
+    <!-- Table -->
+    <table>
+        <thead>
+            <tr>
+                <th>Foto</th>
+                <th>Nama</th>
+                <th>Kelas</th>
+                <th>NISN</th>
+                <th>Email</th>
+                <th>Aksi</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach ($siswas as $siswa)
+            <tr>
+                <td>
+                    @if($siswa->photo)
+                        <img src="{{ asset('storage/'.$siswa->photo) }}" alt="">
+                    @else
+                        <img src="https://via.placeholder.com/70x70?text=No+Img" alt="">
+                    @endif
+                </td>
+                <td>{{ $siswa->name }}</td>
+                <td>{{ $siswa->clas->name }}</td>
+                <td>{{ $siswa->nisn }}</td>
+                <td>{{ $siswa->email }}</td>
+                <td class="aksi-btn">
+                    <a href="/siswa/edit/{{ $siswa->id }}" class="edit-btn">Edit</a>
+                    <a href="/siswa/show/{{ $siswa->id }}" class="detail-btn">Detail</a>
+                    <a href="/siswa/delete/{{ $siswa->id }}" onclick="return confirm('Yakin ingin menghapus data ini?')" class="delete-btn">Delete</a>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
+</div>
 
 </body>
 </html>
