@@ -99,14 +99,14 @@ class SiswaController extends Controller
             'alamat'       =>      'required',
             'email'        =>      'required',
             'no_handphone' =>      'required',
-
-        ]);    
+        ]);
+        
 
         //cari apakah ada user di tabel yang akan di update cari sesuai id
         $datasiswa = user::find($id);  
     
         //siapkan data yang akan disimpan sebagai update
-        $datasiswa_update =[
+        $datasiswa_update = [
             'clas_id'       =>$request->kelas_id,
             'name'          =>$request->name,
             'nisn'          =>$request->nisn,
@@ -115,6 +115,23 @@ class SiswaController extends Controller
             'no_handphone'  =>$request->no_handphone,
       
         ];
+
+        //cek apakah user update password atau tidak
+        if ($request->password !=null) {
+              $datasiswa_update['password'] = $request->password;
+        }
+
+        //cek apakah user update foto atau tidak
+        if ($request->hasfile('foto')) {
+
+            //hapus file gambar sebelumnya dari file
+            storage::disk('public')->delete($datasiswa->photo);
+
+            //update gambar baru
+            $datasiswa_update['photo'] = $request->file('foto')->store('profilesiswa','public');
+
+        }
+
 
         //simpan data ke dalam base dengan data yang terbaru sesuai id
         $datasiswa->update($datasiswa_update);
