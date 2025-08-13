@@ -94,7 +94,7 @@ class SiswaController extends Controller
             'email'        => 'required|email|unique:users,email,' . $id,
             'no_handphone' => 'required|unique:users,no_handphone,' . $id,
             'photo'        => 'nullable|image|max:2048',
-            'password'     => 'nullable|min:6' // password opsional
+            'password'     => 'nullable|min:6' 
         ]);
 
         $datauser_update = [
