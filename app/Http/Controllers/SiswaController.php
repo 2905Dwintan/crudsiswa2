@@ -73,7 +73,7 @@ class SiswaController extends Controller
     }
  
 
- public function edit($id){
+ public function edit( $id ){
         //siapkan data atau panggil kelas
         $clases =clas::all();
 
