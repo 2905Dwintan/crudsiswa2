@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Storage;
 class SiswaController extends Controller
 {
     public function index() {
-        // siapkan data siseas
         $siswas = User::all();
         return view('siswa.index', compact('siswas'));
     }
@@ -22,53 +21,52 @@ class SiswaController extends Controller
 
     public function store(Request $request) {
         $request->validate([
-            'name' => 'required',
-            'nisn' => 'required | unique:users',
-            'email' => 'required | unique:users,email',
-            'password' => 'required',
-            'no_handphone' => 'required | unique:users,no_handphone'
+            'name'         => 'required',
+            'nisn'         => 'required|unique:users',
+            'email'        => 'required|email|unique:users,email',
+            'password'     => 'required|min:6',
+            'no_handphone' => 'required|unique:users,no_handphone',
+            'photo'        => 'nullable|image|max:2048'
         ]);
 
         $datauser_store = [
-            'clas_id' => $request->kelas_id,
-            'name' => $request->name,
-            'nisn' => $request->nisn,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
+            'clas_id'      => $request->kelas_id,
+            'name'         => $request->name,
+            'nisn'         => $request->nisn,
+            'email'        => $request->email,
+            'password'     => bcrypt($request->password),
             'no_handphone' => $request->no_handphone
         ];
 
-        $datauser_store['photo'] = $request->file('photo')->store('profilesiswa', 'public');
+        if ($request->hasFile('photo')) {
+            $datauser_store['photo'] = $request->file('photo')->store('profilesiswa', 'public');
+        }
 
         User::create($datauser_store);
 
         return redirect('/');
     }
 
-    // fungsi delete
-    public function destroy($id){
-        //cari user di dalam database berdasarkan id yang dikirimkan 
+    public function destroy($id) {
         $datauser = User::find($id);
 
-        //lakukan delete pada data tersebut jika data user tersebut ada 
-        if ($datauser !=null) {
-            storage::disk('public')->delete($datauser->photo);
+        if ($datauser) {
+            if ($datauser->photo) {
+                Storage::disk('public')->delete($datauser->photo);
+            }
             $datauser->delete();
         }
 
-        // kembalikan user ke halaman beranda / home
         return redirect('/');
     }
 
     public function show($id) {
-        // cari data siswa di dalam tabel user dengan id yang di kirimkan 
         $datauser = User::find($id);
          
-        // cek apakah ada data atau tidak 
-        if ($datauser ==null) {
-         return redirect('/');
+        if (!$datauser) {
+            return redirect('/');
         }
-   // pindah user ke halaman detail siswa dengan mengirimkan data detailnya
+
         return view('siswa.show', compact('datauser'));
     }
  
@@ -137,6 +135,59 @@ class SiswaController extends Controller
         $datasiswa->update($datasiswa_update);
 
         //simpan data ke halaman beranda
+        return redirect('/');
+    }
+}
+    public function edit($id) {
+        $clases = Clas::all();
+        $datauser = User::find($id);
+
+        if (!$datauser) {
+            return redirect('/');
+        }
+
+        return view('siswa.edit', compact('clases', 'datauser'));
+    }
+
+    public function update(Request $request, $id) {
+        $datasiswa = User::find($id);
+
+        if (!$datasiswa) {
+            return redirect('/');
+        }
+
+        $request->validate([
+            'name'         => 'required',
+            'nisn'         => 'required|unique:users,nisn,' . $id,
+            'email'        => 'required|email|unique:users,email,' . $id,
+            'no_handphone' => 'required|unique:users,no_handphone,' . $id,
+            'photo'        => 'nullable|image|max:2048',
+            'password'     => 'nullable|min:6' // password opsional
+        ]);
+
+        $datauser_update = [
+            'clas_id'      => $request->kelas_id,
+            'name'         => $request->name,
+            'nisn'         => $request->nisn,
+            'email'        => $request->email,
+            'no_handphone' => $request->no_handphone
+        ];
+
+        // Ubah password hanya jika diisi
+        if (!empty($request->password)) {
+            $datauser_update['password'] = bcrypt($request->password);
+        }
+
+        // Ubah foto jika diupload
+        if ($request->hasFile('photo')) {
+            if ($datasiswa->photo) {
+                Storage::disk('public')->delete($datasiswa->photo);
+            }
+            $datauser_update['photo'] = $request->file('photo')->store('profilesiswa', 'public');
+        }
+
+        $datasiswa->update($datauser_update);
+
         return redirect('/');
     }
 }
