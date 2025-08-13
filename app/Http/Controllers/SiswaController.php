@@ -71,9 +71,9 @@ class SiswaController extends Controller
    // pindah user ke halaman detail siswa dengan mengirimkan data detailnya
         return view('siswa.show', compact('datauser'));
     }
+ 
 
-
-    public function edit($id){
+ public function edit($id){
         //siapkan data atau panggil kelas
         $clases =clas::all();
 
@@ -100,7 +100,7 @@ class SiswaController extends Controller
             'email'        =>      'required',
             'no_handphone' =>      'required',
 
-        ]);
+        ]);    
 
         //cari apakah ada user di tabel yang akan di update cari sesuai id
         $datasiswa = user::find($id);  
