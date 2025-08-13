@@ -123,31 +123,23 @@
             <tr>
                 <th>Foto</th>
                 <th>Nama</th>
-                <th>Kelas</th>
-                <th>NISN</th>
-                <th>Email</th>
+                <td>kelas</th>
+                <th>Alamat</th>
                 <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($siswas as $siswa)
             <tr>
-                <td>
-                    @if($siswa->photo)
-                        <img src="{{ asset('storage/'.$siswa->photo) }}" alt="">
-                    @else
-                        <img src="https://via.placeholder.com/70x70?text=No+Img" alt="">
-                    @endif
-                </td>
-                <td>{{ $siswa->name }}</td>
-                <td>{{ $siswa->clas->name }}</td>
-                <td>{{ $siswa->nisn }}</td>
-                <td>{{ $siswa->email }}</td>
-                <td class="aksi-btn">
-                    <a href="/siswa/edit/{{ $siswa->id }}" class="edit-btn">Edit</a>
-                    <a href="/siswa/show/{{ $siswa->id }}" class="detail-btn">Detail</a>
-                    <a href="/siswa/delete/{{ $siswa->id }}" onclick="return confirm('Yakin ingin menghapus data ini?')" class="delete-btn">Delete</a>
-                </td>
+                <td><img src="{{asset('storage/'.$siswa->photo)}}" alt ="" width ="50"</td>
+                <td>{{ $siswa->name}}</td>
+                  <td>{{ $siswa->clas->name }}</td>
+                  <td>{{ $siswa->alamat}}</td>
+              <td>
+                <a href="/siswa/edit/{{ $siswa->id }}" style="padding: 5px 10px; text-decoration: none; border: 1px solid #aaa; border-radius: 4px; margin-right: 5px;">Edit</a>
+                <a href="/siswa/show/{{ $siswa->id }}" style="padding: 5px 10px; text-decoration: none; border: 1px solid #aaa; border-radius: 4px; margin-right: 5px;">Detail</a>
+                <a href="/siswa/delete/{{ $siswa->id }}" onclick="return confirm('Yakin ingin menghapus data ini?')" style="padding: 5px 10px; text-decoration: none; border: 1px solid #aaa; border-radius: 4px;">Delete</a>
+            </td>
             </tr>
             @endforeach
         </tbody>

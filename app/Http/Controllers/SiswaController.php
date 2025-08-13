@@ -69,7 +69,75 @@ class SiswaController extends Controller
 
         return view('siswa.show', compact('datauser'));
     }
+ 
 
+ public function edit( $id ){
+        //siapkan data atau panggil kelas
+        $clases =clas::all();
+
+        //ambil data user atau siswa di tabel user berdasar kan id
+        $datauser =user::find($id);
+        
+        //cek apakah datanya ada atau tidak
+        if($datauser == null){
+            return redirect('/');
+            
+        }
+
+        return view('siswa.edit',compact('clases', 'datauser'));
+        
+    }
+
+    //
+    public function update(Request $request,$id){
+        //validasi data
+        $request->validate([
+            'name'         =>      'required',
+            'nisn'         =>      'required',
+            'alamat'       =>      'required',
+            'email'        =>      'required',
+            'no_handphone' =>      'required',
+        ]);
+        
+
+        //cari apakah ada user di tabel yang akan di update cari sesuai id
+        $datasiswa = user::find($id);  
+    
+        //siapkan data yang akan disimpan sebagai update
+        $datasiswa_update = [
+            'clas_id'       =>$request->kelas_id,
+            'name'          =>$request->name,
+            'nisn'          =>$request->nisn,
+            'alamat'        =>$request->alamat,
+            'email'         =>$request->email,
+            'no_handphone'  =>$request->no_handphone,
+      
+        ];
+
+        //cek apakah user update password atau tidak
+        if ($request->password !=null) {
+              $datasiswa_update['password'] = $request->password;
+        }
+
+        //cek apakah user update foto atau tidak
+        if ($request->hasfile('foto')) {
+
+            //hapus file gambar sebelumnya dari file
+            storage::disk('public')->delete($datasiswa->photo);
+
+            //update gambar baru
+            $datasiswa_update['photo'] = $request->file('foto')->store('profilesiswa','public');
+
+        }
+
+
+        //simpan data ke dalam base dengan data yang terbaru sesuai id
+        $datasiswa->update($datasiswa_update);
+
+        //simpan data ke halaman beranda
+        return redirect('/');
+    }
+}
     public function edit($id) {
         $clases = Clas::all();
         $datauser = User::find($id);
