@@ -109,12 +109,13 @@
     </style>
 </head>
 <body>
-
+ 
 <div class="container">
     <!-- Header -->
     <div class="header-wrapper">
         <a href="/siswa/create" class="btn-tambah">➕ Tambah Siswa</a>
         <h2>📋 Daftar Siswa</h2>
+        <a href="/kelas">class </a>
     </div>
 
     <!-- Table -->

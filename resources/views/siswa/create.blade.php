@@ -110,8 +110,8 @@
     <input type="password" name="password">
     @error('password') <small>{{ $message }}</small> @enderror
 
-    <label for="photo" class="upload-label">📷 Upload Photo</label>
-    <input type="file" name="photo">
+    <label for="foto" class="upload-label">📷 Upload Photo</label>
+    <input type="file" name="foto">
 
     <button type="submit">Simpan</button>
     <a href="/">Kembali</a>

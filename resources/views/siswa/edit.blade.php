@@ -83,7 +83,7 @@
     </div><br>
 
 <div style="margin-bottom: 15px;">
-    <label for="photo" 
+    <label for="foto" 
            style="display: block; margin-bottom: 5px; font-weight: bold; color: #e91e63;">
         📷 Upload Photo
     </label>
