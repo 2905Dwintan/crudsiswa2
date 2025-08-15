@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Siswa</title>
+    <title>Data Kelas</title>
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -99,15 +99,6 @@
             transition: 0.3s;
         }
 
-        /* Foto bulat */
-        img {
-            width: 70px;
-            height: 70px;
-            object-fit: cover;
-            border-radius: 50%;
-            border: 2px solid #f8bbd0;
-        }
-
         /* Tombol Aksi */
         .aksi-btn a {
             padding: 6px 12px;
@@ -135,51 +126,44 @@
 <body>
 
 <div class="container">
-    <!-- Navbar Menu -->
+ 
     <div class="navbar">
         <a href="/">📚 Menu Siswa</a>
-        <a href="/kelas">🏫 Menu Kelas</a>
+        <a href="/clas">🏫 Menu Kelas</a>
     </div>
 
-    <!-- Header -->
+
     <div class="header-wrapper">
-        <a href="/siswa/create" class="btn-tambah">➕ Tambah Siswa</a>
-        <h2>📋 Daftar Siswa</h2>
+        <a href="/kelas/create" class="btn-tambah">➕ Tambah Kelas</a>
+        <h2>📋 Daftar Kelas</h2>
     </div>
 
-    <!-- Table -->
     <table>
         <thead>
             <tr>
-                <th>Foto</th>
-                <th>Nama</th>
-                <th>Kelas</th>
-                <th>NISN</th>
-                <th>Email</th>
+                <th>Nama Kelas</th>
+                <th>Deskripsi</th>
                 <th>Aksi</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($siswas as $siswa)
-            <tr>
-                <td>
-                    @if($siswa->photo)
-                        <img src="{{ asset('storage/'.$siswa->photo) }}" alt="">
-                    @else
-                        <img src="https://via.placeholder.com/70x70?text=No+Img" alt="">
-                    @endif
-                </td>
-                <td>{{ $siswa->name }}</td>
-                <td>{{ $siswa->clas?->name }}</td>
-                <td>{{ $siswa->nisn }}</td>
-                <td>{{ $siswa->email }}</td>
-                <td class="aksi-btn">
-                    <a href="/siswa/edit/ {{ $siswa->id }}" class="edit-btn">Edit</a>
-                    <a href="/siswa/show/ {{ $siswa->id }}" class="detail-btn">Detail</a>
-                    <a href="/siswa/delete/ {{ $siswa->id }}" onclick="return confirm('Yakin ingin menghapus data ini?')" class="delete-btn">Delete</a>
-                </td>
-            </tr>
-            @endforeach
+       @foreach ($kelas as $k)
+<tr>
+    <td>{{ $k->name }}</td>
+    <td>{{ $k->description }}</td>
+    <td>
+        <a href="/kelas/show/{{ $k->id }}" class="btn btn-edit" style="background-color:#87CEFA; color:white;">Detail</a>
+        <a href="/kelas/edit/{{ $k->id }}" class="btn btn-edit">Edit</a>
+        
+       <form action="{{ route('destroy', $k->id) }}" method="POST" style="display:inline;">
+    @csrf
+    @method('DELETE')
+    <button type="submit" class="btn btn-delete">Delete</button>
+</form>
+    </td>
+</tr>
+@endforeach
+
         </tbody>
     </table>
 </div>

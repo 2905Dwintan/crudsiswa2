@@ -105,6 +105,7 @@ class SiswaController extends Controller
             'no_handphone' => $request->no_handphone
         ];
 
+
         // Ubah password hanya jika diisi
         if (!empty($request->password)) {
             $datauser_update['password'] = bcrypt($request->password);
