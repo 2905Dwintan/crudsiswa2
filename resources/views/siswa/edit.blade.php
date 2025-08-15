@@ -110,38 +110,50 @@
                         </option>
                     @endforeach
                 </select>
-                @error('kelas_id') <small>{{ $message }}</small> @enderror
+                @error('kelas_id') 
+                <small>{{ $message }}</small> 
+                @enderror
             </div><br>
 
             <div>
                 <label>Nama</label>
                 <input type="text" name="name" value="{{ $datauser->name }}">
-                @error('name') <small>{{ $message }}</small> @enderror
+                @error('name')
+                 <small>{{ $message }}</small>
+                 @enderror
             </div><br>
 
             <div>
                 <label>NISN</label>
                 <input type="text" name="nisn" value="{{ $datauser->nisn }}">
-                @error('nisn') <small>{{ $message }}</small> @enderror
+                @error('nisn')
+                 <small>{{ $message }}</small>
+                 @enderror
             </div><br>
 
             <div>
                 <label>No Handphone</label>
                 <input type="text" name="no_handphone" value="{{ $datauser->no_handphone }}">
-                @error('no_handphone') <small>{{ $message }}</small> @enderror
+                @error('no_handphone')
+                 <small>{{ $message }}</small> 
+                 @enderror
             </div><br>
 
             <div>
                 <label>Email</label>
                 <input type="text" name="email" value="{{ $datauser->email }}">
-                @error('email') <small>{{ $message }}</small> @enderror
+                @error('email') 
+                <small>{{ $message }}</small>
+                 @enderror
             </div><br>
 
             <div>
                 <label>Password</label>
                 <input type="password" name="password">
                 <small style="color: #0040ff">Kosongkan jika tidak ingin diubah</small>
-                @error('password') <small>{{ $message }}</small> @enderror
+                @error('password') 
+                <small>{{ $message }}</small>
+                 @enderror
             </div><br>
 
             <div>
