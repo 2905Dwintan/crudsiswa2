@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Kelas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+@extends('layout.app')
+@section('css')
     <style>
         body { font-family: 'Poppins', sans-serif; background-color: #fff0f5; color: #e91e63; padding: 20px; }
         h1 { text-align: center; font-weight: 700; margin-bottom: 20px; }
@@ -18,8 +13,8 @@
         a { background-color: #e91e63; color: white; padding: 10px 15px; border-radius: 8px; text-decoration: none; font-size: 14px; display: inline-block; margin-top: 15px; }
         a:hover { background-color: #d81b60; }
     </style>
-</head>
-<body>
+@endsection
+      @section('content')
 
 <h1>Detail Kelas</h1>
 
@@ -58,6 +53,4 @@
 
     <a href="/kelas">Kembali</a>
 </div>
-
-</body>
-</html>
+@endsection

@@ -1,10 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detail Siswa</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600&family=Quicksand:wght@400;600&display=swap" rel="stylesheet">
+@extends('layout.app')
+@section('css')
     <style>
         body {
             font-family: 'Quicksand', sans-serif;
@@ -72,9 +67,8 @@
             transform: translateY(-2px);
         }
     </style>
-</head>
-<body>
-
+@endsection
+      @section('content')
     <div class="container">
         <h1>📋 Detail Siswa</h1>
 
@@ -101,6 +95,4 @@
 
         <a href="/" class="btn-back">← Kembali</a>
     </div>
-
-</body>
-</html>
+@endsection

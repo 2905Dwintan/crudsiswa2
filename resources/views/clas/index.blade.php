@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Kelas</title>
+@extends('layout.app')
+@section('css')
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -122,8 +118,8 @@
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
-</head>
-<body>
+@endsection
+      @section('content')
 
 <div class="container">
  
@@ -167,6 +163,4 @@
         </tbody>
     </table>
 </div>
-
-</body>
-</html>
+@endsection

@@ -1,17 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Kelas PPLG</title>
-
-    <!-- Import font aesthetic dari Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
+@extends('layout.app')
+@section('css')
 
     <style>
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #fff0f5; /* pink muda */
+            background-color: #fff0f5; 
             color: #e91e63;
             padding: 20px;
         }
@@ -68,8 +61,8 @@
             transform: scale(1.05);
         }
     </style>
-</head>
-<body>
+@endsection
+      @section('content')
 <h1>Halaman Kelas PPLG</h1>
 
 <form action="/kelas/store" method="post">
@@ -86,6 +79,4 @@
     <button type="submit">Simpan</button>
     <a href="/kelas">Kembali</a>
 </form>
-
-</body>
-</html>
+@endsection
