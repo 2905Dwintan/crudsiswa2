@@ -1,13 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Form Siswa PPLG</title>
-
-    <!-- Import font aesthetic dari Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap" rel="stylesheet">
-
+@extends('layout.app')
+@section('css')
     <style>
         body {
             font-family: 'Poppins', sans-serif;
@@ -71,8 +63,9 @@
             color: #e91e63;
         }
     </style>
-</head>
-<body>
+    @endsection
+      @section('content')
+      
 <h1>Halaman Siswa PPLG</h1>
 
 <form action="/siswa/store" method="post" enctype="multipart/form-data">
@@ -116,6 +109,4 @@
     <button type="submit">Simpan</button>
     <a href="/">Kembali</a>
 </form>
-
-</body>
-</html>
+@endsection

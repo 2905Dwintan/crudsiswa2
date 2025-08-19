@@ -1,10 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Siswa</title>
-    <style>
+@extends('layout.app')
+@section('css')
+<style>
         body {
             font-family: 'Poppins', sans-serif;
             background-color: #fff5f8;
@@ -131,11 +127,10 @@
             to { opacity: 1; transform: translateY(0); }
         }
     </style>
-</head>
-<body>
-
+@endsection
+      @section('content')
 <div class="container">
-    <!-- Navbar Menu -->
+   
     <div class="navbar">
         <a href="/">📚 Menu Siswa</a>
         <a href="/kelas">🏫 Menu Kelas</a>
@@ -183,6 +178,4 @@
         </tbody>
     </table>
 </div>
-
-</body>
-</html>
+@endsection

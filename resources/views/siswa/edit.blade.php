@@ -1,9 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Siswa</title>
+@extends('layout.app')
+@section('css')
     <style>
         body {
             background-color: #fff0f5;
@@ -89,9 +85,8 @@
             border: 2px solid #e91e63;
         }
     </style>
-</head>
-
-<body>
+    @endsection
+      @section('content')
     <h1>✏️ Edit Siswa PPLG</h1>
 
     <div class="form-container">
@@ -165,5 +160,4 @@
             <a href="/">⬅ Kembali</a>
         </form>
     </div>
-</body>
-</html>
+@endsection
